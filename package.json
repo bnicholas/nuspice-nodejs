@@ -1,0 +1,16 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "A simple headless node.js app REPL to demonstrate communicating with NuLEDs NuSPICE Boxes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Nicholas",
+  "license": "ISC",
+  "dependencies": {
+    "arpscan": "^0.1.0",
+    "prompt": "^1.0.0",
+    "udp": "^1.0.0"
+  }
+}
