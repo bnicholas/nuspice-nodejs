@@ -48,7 +48,7 @@ const replServer = repl.start({
 
 const udp = require('dgram');
 const message = Buffer.from('Some bytes');
-const client = udp.createSocket('udp4');
+const socket = udp.createSocket('udp4');
 
 const send_command = (function() {
   prompt.start();
@@ -67,13 +67,16 @@ const send_command = (function() {
       description: 'Enter the string command',
       required: true,
       hidden: false,
-      default: 'A255R255G0B255W0S255F4;',
+      default: 'A255R255G255B255W0S255F4;',
       required: true,
     }],
     function(err, result) {
-      client.send(result.command, nu.ports.send, result.ip_address, (err) => {
-        client.close();
-      });
+      socket.send(result.command, nu.ports.send, result.ip_address, function() {
+        console.log("------------------------");
+        socket.on('message', (msg, rinfo) => {
+          console.log(msg.toString('utf8'), rinfo);
+        });
+      })
     });
 
 }).call(this);
